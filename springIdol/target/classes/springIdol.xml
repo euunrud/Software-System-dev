@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
 
 	<!-- ==================================================================== -->
 	<!-- Spring Idol talent compitition class -->
@@ -13,9 +17,12 @@
 				<ref bean="duke" />
 				<ref bean="kenny" />
 				<ref bean="hank" />
+				<ref bean="eunkyung" />
+				<ref bean="bibi" />
 			</list>
 		</property>
 	</bean>
+
 
 	<!-- ==================================================================== -->
 	<!-- Performers -->
@@ -39,9 +46,34 @@
 			</map>
 		</property>
 	</bean>
-	
+
+	<bean id="eunkyung" class="springidol.Singer">
+		<constructor-arg value="EunKyung" />
+		<constructor-arg ref="someoneLikeYou" />
+	</bean>
+
+	<bean id="bibi" class="springidol.Singer">
+		<constructor-arg value="BiBi" />
+		<constructor-arg value="#{eunkyung.song}" />
+		<constructor-arg ref="piano" />
+	</bean>
+
+	<bean id="someoneLikeYou" class="springidol.Song">
+		<property name="title" value="Someone Like You" />
+		<property name="artist" value="Adele" />
+	</bean>
+
+	<bean id="uptownFunk" class="springidol.Song">
+		<property name="title" value="Uptown Funk" />
+		<property name="artist" value="Mark Ronson" />
+	</bean>
+
 	<bean id="sonnet29" class="springidol.Sonnet29" />
-	
+
+	<bean id="encore" class="springidol.Encore">
+		<property name="performer" ref="eunkyung" />
+	</bean>
+
 	<!-- ==================================================================== -->
 	<!-- Instruments performers can use -->
 	<!-- ==================================================================== -->
@@ -49,5 +81,8 @@
 	<bean id="cymbal" class="springidol.Cymbal" />
 	<bean id="guitar" class="springidol.Guitar" />
 	<bean id="saxophone" class="springidol.Saxophone" />
+	<bean id="piano" class="springidol.Piano" />
 
 </beans>
+
+<!-- 설정파일, -->

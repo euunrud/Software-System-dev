@@ -17,7 +17,7 @@ public class OneManBand implements Performer {
 		for (Map.Entry<String, Instrument> entry : instruments.entrySet()) {
 			String key = entry.getKey();
 			Instrument instrument = entry.getValue();
-			System.out.println(key + " : " + instrument);
+			System.out.print(key + " : ");
 			instrument.play();
 		}
 	}
